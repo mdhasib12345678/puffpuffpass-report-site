@@ -267,88 +267,94 @@ main { min-height: 60vh; }
 }
 
 /* =====================================================================
-   Premium progress ring — glassmorphism + glow + count-up
+   Premium progress ring — pink → purple → blue gradient,
+   glassmorphism + multi-layer glow + count-up
    ===================================================================== */
 .ring {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 22px;
+  gap: 24px;
 }
 .ring-glass {
   position: relative;
-  width: 240px;
-  height: 240px;
+  width: 260px;
+  height: 260px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   isolation: isolate;
   background:
-    radial-gradient(120% 120% at 30% 25%, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.55) 45%, rgba(255,255,255,0.18) 100%);
-  backdrop-filter: blur(22px) saturate(180%);
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.72);
+    radial-gradient(120% 120% at 30% 22%,
+      rgba(255,255,255,0.96) 0%,
+      rgba(255,255,255,0.62) 40%,
+      rgba(255,255,255,0.22) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.78);
   box-shadow:
-    0 30px 60px -24px rgba(7,94,84,0.28),
-    0 12px 28px -10px rgba(7,94,84,0.18),
-    inset 0 1px 0 rgba(255,255,255,0.95),
+    0 36px 72px -28px rgba(168, 85, 247, 0.32),
+    0 14px 32px -10px rgba(59, 130, 246, 0.22),
+    inset 0 1px 0 rgba(255,255,255,0.96),
     inset 0 -1px 0 rgba(0,0,0,0.04);
   animation: ring-breathe 6s ease-in-out infinite;
 }
 .ring-glass::before {
   content: "";
   position: absolute;
-  inset: 6px;
+  inset: 8px;
   border-radius: 50%;
   background:
-    conic-gradient(from 220deg, rgba(255,255,255,0) 0deg, rgba(255,255,255,0.55) 80deg, rgba(255,255,255,0) 160deg);
-  mask: radial-gradient(circle, transparent 60%, #000 62%);
-  -webkit-mask: radial-gradient(circle, transparent 60%, #000 62%);
+    conic-gradient(from 220deg, rgba(255,255,255,0) 0deg, rgba(255,255,255,0.6) 80deg, rgba(255,255,255,0) 160deg);
+  mask: radial-gradient(circle, transparent 62%, #000 64%);
+  -webkit-mask: radial-gradient(circle, transparent 62%, #000 64%);
   pointer-events: none;
-  opacity: 0.7;
+  opacity: 0.75;
 }
 .ring-aurora {
   position: absolute;
-  inset: -16px;
+  inset: -22px;
   border-radius: 50%;
   z-index: -1;
   background:
     conic-gradient(from 0deg,
-      rgba(7,94,84,0)   0deg,
-      rgba(52,199,89,0.32) 90deg,
-      rgba(123,228,149,0.18) 180deg,
-      rgba(7,94,84,0) 280deg,
-      rgba(7,94,84,0) 360deg);
-  filter: blur(28px);
-  animation: ring-aurora 9s linear infinite;
+      rgba(236, 72, 153, 0)    0deg,
+      rgba(236, 72, 153, 0.40) 60deg,
+      rgba(168, 85, 247, 0.45) 160deg,
+      rgba(59, 130, 246, 0.40) 260deg,
+      rgba(236, 72, 153, 0)    360deg);
+  filter: blur(30px);
+  animation: ring-aurora 10s linear infinite;
 }
 @keyframes ring-breathe {
   0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.012); }
+  50%      { transform: scale(1.014); }
 }
 @keyframes ring-aurora {
   to { transform: rotate(360deg); }
 }
 
 .ring-svg {
-  width: 200px;
-  height: 200px;
+  width: 220px;
+  height: 220px;
   transform: rotate(-90deg);
-  filter: drop-shadow(0 6px 14px rgba(52,199,89,0.32));
+  filter:
+    drop-shadow(0 4px 10px rgba(168, 85, 247, 0.30))
+    drop-shadow(0 8px 20px rgba(59, 130, 246, 0.18));
 }
 .ring-svg circle {
   fill: none;
-  stroke-width: 12;
+  stroke-width: 14;
 }
 .ring-track {
-  stroke: rgba(15,23,42,0.06);
+  stroke: #e9eaee;
 }
 .ring-fg {
   stroke: url(#ringGrad);
   stroke-linecap: round;
   stroke-dasharray: 540.35;       /* 2π · 86 */
   stroke-dashoffset: 540.35;
-  animation: ring-fill 1.8s cubic-bezier(0.65,0,0.35,1) 0.4s forwards;
+  animation: ring-fill 1.9s cubic-bezier(0.65,0,0.35,1) 0.4s forwards;
 }
 @keyframes ring-fill {
   to { stroke-dashoffset: var(--ring-target); }
@@ -357,46 +363,64 @@ main { min-height: 60vh; }
 .ring-center {
   position: absolute;
   inset: 0;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
   pointer-events: none;
+}
+.ring-center .pct-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #b4b7bf;
+  margin-bottom: 2px;
 }
 .ring-center .pct {
   font-size: 64px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: -0.045em;
   line-height: 1;
   font-feature-settings: "tnum" 1;
-  background: linear-gradient(180deg, #0f172a 0%, #475569 100%);
+  background: linear-gradient(180deg, #2347d6 0%, #1e3a8a 100%);
   -webkit-background-clip: text;
           background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-flex;
   align-items: baseline;
-  text-shadow: 0 2px 12px rgba(15,23,42,0.04);
 }
 .ring-center .pct-num { display: inline-block; min-width: 1.6ch; text-align: right; }
 .ring-center .pct-suffix {
-  font-size: 26px;
-  font-weight: 500;
-  margin-left: 2px;
-  -webkit-text-fill-color: var(--text-mute);
-  background: none;
+  font-size: 30px;
+  font-weight: 700;
+  margin-left: 1px;
+  -webkit-text-fill-color: transparent;
 }
 
 .ring-caption {
   font-size: 12px;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  font-weight: 600;
-  color: var(--text-mute);
+  font-weight: 700;
+  color: #6e6e73;
   text-align: center;
 }
 
 @media (max-width: 760px) {
-  .ring-glass { width: 220px; height: 220px; }
-  .ring-svg   { width: 184px; height: 184px; }
+  .ring { gap: 20px; }
+  .ring-glass { width: 232px; height: 232px; }
+  .ring-svg   { width: 196px; height: 196px; }
   .ring-center .pct { font-size: 56px; }
+  .ring-center .pct-suffix { font-size: 26px; }
+  .ring-center .pct-eyebrow { font-size: 11px; letter-spacing: 0.2em; }
+  .ring-caption { font-size: 11px; letter-spacing: 0.2em; }
+}
+@media (max-width: 380px) {
+  .ring-glass { width: 208px; height: 208px; }
+  .ring-svg   { width: 172px; height: 172px; }
+  .ring-center .pct { font-size: 48px; }
   .ring-center .pct-suffix { font-size: 22px; }
 }
 @media (prefers-reduced-motion: reduce) {
