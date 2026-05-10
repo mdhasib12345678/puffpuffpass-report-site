@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Backend Development · PUFF PUFF PASS Reports</title>
+<meta name="description" content="Production-grade headless commerce engine with PostgreSQL, REST + Admin APIs, and every core commerce module enabled." />
+<link rel="stylesheet" href="/assets/style.css" />
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiMwNzVFNTQiLz48dGV4dCB4PSIzMiIgeT0iNDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTRiBQcm8gRGlzcGxheSwtYXBwbGUtc3lzdGVtLEhlbHZldGljYSxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjZmZmZmZmIj5QPC90ZXh0Pjwvc3ZnPg==" />
+</head>
+<body>
+
+    <header class="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-brand">
+          <span class="nav-brand-mark">P</span>
+          <span>PUFF PUFF PASS</span>
+          <span class="muted" style="font-weight: 400; font-size: 13px;">· Reports</span>
+        </a>
+        <nav>
+          <ul class="nav-links"><li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item has-children">
+          <a class="nav-link" href="/project/">Project</a>
+          <ul class="nav-dropdown">
+            <li><a href="/project/goals/">Goals &amp; Objectives</a></li><li><a href="/project/scope/">Scope &amp; Requirements</a></li><li><a href="/project/timeline/">Timeline &amp; Milestones</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-children">
+          <a class="nav-link active" href="/development/">Development</a>
+          <ul class="nav-dropdown">
+            <li><a href="/development/frontend/">Frontend</a></li><li><a href="/development/backend/" class="active">Backend</a></li><li><a href="/development/admin/">Admin Panel</a></li><li><a href="/development/catalogue/">Catalogue System</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-children">
+          <a class="nav-link" href="/technology/">Technology</a>
+          <ul class="nav-dropdown">
+            <li><a href="/technology/architecture/">System Architecture</a></li><li><a href="/technology/security/">Security</a></li><li><a href="/technology/performance/">Performance &amp; SEO</a></li>
+          </ul>
+        </li>
+        <li class="nav-item has-children">
+          <a class="nav-link" href="/ecommerce/">Ecommerce</a>
+          <ul class="nav-dropdown">
+            <li><a href="/ecommerce/products/">Product System</a></li><li><a href="/ecommerce/payments/">Payment Integration</a></li>
+          </ul>
+        </li><li class="nav-item"><a class="nav-link" href="/roadmap/">Roadmap</a></li><li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li></ul>
+          <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+              <line x1="3" y1="7" x2="21" y2="7"/>
+              <line x1="3" y1="12" x2="21" y2="12"/>
+              <line x1="3" y1="17" x2="21" y2="17"/>
+            </svg>
+          </button>
+        </nav>
+      </div>
+      <div class="nav-mobile-panel" id="navMobilePanel"><ul><li><a class="" href="/">Home</a></li>
+        <li>
+          <a class="" href="/project/">Project</a>
+          <ul>
+            <li><a href="/project/goals/">Goals &amp; Objectives</a></li><li><a href="/project/scope/">Scope &amp; Requirements</a></li><li><a href="/project/timeline/">Timeline &amp; Milestones</a></li>
+          </ul>
+        </li>
+        <li>
+          <a class="active" href="/development/">Development</a>
+          <ul>
+            <li><a href="/development/frontend/">Frontend</a></li><li><a class="active" href="/development/backend/">Backend</a></li><li><a href="/development/admin/">Admin Panel</a></li><li><a href="/development/catalogue/">Catalogue System</a></li>
+          </ul>
+        </li>
+        <li>
+          <a class="" href="/technology/">Technology</a>
+          <ul>
+            <li><a href="/technology/architecture/">System Architecture</a></li><li><a href="/technology/security/">Security</a></li><li><a href="/technology/performance/">Performance &amp; SEO</a></li>
+          </ul>
+        </li>
+        <li>
+          <a class="" href="/ecommerce/">Ecommerce</a>
+          <ul>
+            <li><a href="/ecommerce/products/">Product System</a></li><li><a href="/ecommerce/payments/">Payment Integration</a></li>
+          </ul>
+        </li><li><a class="" href="/roadmap/">Roadmap</a></li><li><a class="" href="/contact/">Contact</a></li></ul></div>
+    </header>
+  
+<main>
+  <section class="hero">
+    <span class="hero-eyebrow">Development · Backend</span>
+    <h1>The brain of the platform — Medusa v2 on a managed cloud stack.</h1>
+    <p class="tagline">Production-grade headless commerce engine with PostgreSQL, REST + Admin APIs, and every core commerce module enabled.</p>
+  </section>
+  
+  
+  
+      <section class="section-tight">
+        <div class="container">
+          <h2 class="section-h2" style="font-size: 28px; margin-bottom: 24px;">Production stack</h2>
+          <div class="kv">
+            
+              <div class="kv-row">
+                <div class="kv-key">Framework</div>
+                <div class="kv-val">Medusa v2.14 (latest stable)</div>
+              </div>
+            
+              <div class="kv-row">
+                <div class="kv-key">Language</div>
+                <div class="kv-val">TypeScript</div>
+              </div>
+            
+              <div class="kv-row">
+                <div class="kv-key">Database</div>
+                <div class="kv-val">PostgreSQL on Neon (Frankfurt EU)</div>
+              </div>
+            
+              <div class="kv-row">
+                <div class="kv-key">Hosting</div>
+                <div class="kv-val">Railway (Amsterdam, EU West)</div>
+              </div>
+            
+              <div class="kv-row">
+                <div class="kv-key">API</div>
+                <div class="kv-val">REST · Admin API · Store API</div>
+              </div>
+            
+              <div class="kv-row">
+                <div class="kv-key">Auto-deploy</div>
+                <div class="kv-val">On every git push, 3–5 min build</div>
+              </div>
+            
+          </div>
+        </div>
+      </section>
+    
+      <section class="section-tight">
+        <div class="container">
+          <h2 class="section-h2" style="font-size: 28px; margin-bottom: 24px;">Modules wired</h2>
+          <div class="status-list">
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Catalog
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Pricing (multi-region)
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Inventory (multi-warehouse)
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Orders
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Carts
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Customers
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Promotions
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Tax (Spanish IVA)
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Currency
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Payment provider integration
+                  <span class="status-item-note">API-ready, awaiting Stripe/PayPal/Bizum credentials</span>
+                </div>
+                <span class="status-pill partial">In progress</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Fulfillment
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Sales channels
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Stock locations
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Workflows engine
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Auth (admin sessions)
+                  
+                </div>
+                <span class="status-pill done">Done</span>
+              </div>
+            
+              <div class="status-item">
+                <div class="status-item-label">
+                  Notifications (transactional email)
+                  <span class="status-item-note">Wired — awaiting Resend API key</span>
+                </div>
+                <span class="status-pill partial">In progress</span>
+              </div>
+            
+          </div>
+        </div>
+      </section>
+    
+      <section class="section-tight">
+        <div class="container">
+          <h2 class="section-h2" style="font-size: 28px; margin-bottom: 24px;">Live access</h2>
+          <div class="link-grid">
+            
+              <a class="link-card" href="https://puffpuffpass-backend-production.up.railway.app/health" target="_blank" rel="noopener">
+                <span>Backend health check →</span>
+                <span class="arrow">›</span>
+              </a>
+            
+              <a class="link-card" href="https://puffpuffpass-backend-production.up.railway.app/app" target="_blank" rel="noopener">
+                <span>Admin panel →</span>
+                <span class="arrow">›</span>
+              </a>
+            
+          </div>
+        </div>
+      </section>
+    
+  
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Want to see it live?</h2>
+        <p>The storefront and admin panel are accessible right now — open them and see real progress.</p>
+        <div class="btn-row">
+          <a class="btn" href="https://puffpuffpass.pages.dev" target="_blank" rel="noopener">Open storefront</a>
+          <a class="btn btn-outline" style="background: rgba(255,255,255,0.95);" href="https://puffpuffpass-backend-production.up.railway.app/app" target="_blank" rel="noopener">Open admin panel</a>
+        </div>
+      </div>
+    </div>
+  
+</main>
+
+    <footer class="fin">
+      <div class="footer-inner">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="brand-name">
+              <span class="nav-brand-mark">P</span>
+              <span>PUFF PUFF PASS</span>
+            </div>
+            <p>Live development progress &amp; client communication for the PUFF PUFF PASS Ecommerce Platform build.</p>
+          </div>
+          
+            <div>
+              <h4>Project</h4>
+              <ul><li><a href="/project/goals/">Goals &amp; Objectives</a></li><li><a href="/project/scope/">Scope &amp; Requirements</a></li><li><a href="/project/timeline/">Timeline &amp; Milestones</a></li></ul>
+            </div>
+          
+            <div>
+              <h4>Development</h4>
+              <ul><li><a href="/development/frontend/">Frontend</a></li><li><a href="/development/backend/">Backend</a></li><li><a href="/development/admin/">Admin Panel</a></li><li><a href="/development/catalogue/">Catalogue System</a></li></ul>
+            </div>
+          
+            <div>
+              <h4>Technology</h4>
+              <ul><li><a href="/technology/architecture/">System Architecture</a></li><li><a href="/technology/security/">Security</a></li><li><a href="/technology/performance/">Performance &amp; SEO</a></li></ul>
+            </div>
+          
+        </div>
+        <div class="legal">
+          <span>© 2026 PUFF PUFF PASS S.L. · Blasco Ibáñez, Valencia, Spain</span>
+          <span><a href="mailto:puffpuffpassweb@gmail.com">puffpuffpassweb@gmail.com</a> · <a href="tel:+34627051665">+34 627 051 665</a></span>
+        </div>
+      </div>
+    </footer>
+  
+<script>
+  // Mobile menu toggle
+  const t = document.getElementById("navMobileToggle");
+  const p = document.getElementById("navMobilePanel");
+  if (t && p) {
+    t.addEventListener("click", () => p.classList.toggle("open"));
+    p.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => p.classList.remove("open")));
+  }
+</script>
+</body>
+</html>
