@@ -4,11 +4,12 @@
 const API_BASE = window.CLIENT_API_BASE || "https://puffpuffpass-backend-production.up.railway.app"
 
 const REACTIONS = [
-  { kind: "like",     emoji: "👍", label: "Like" },
+  { kind: "approved", emoji: "✅", label: "Approve" },
   { kind: "love",     emoji: "❤️", label: "Love" },
+  { kind: "like",     emoji: "👍", label: "Like" },
   { kind: "fire",     emoji: "🔥", label: "Fire" },
   { kind: "clap",     emoji: "👏", label: "Clap" },
-  { kind: "thinking", emoji: "🤔", label: "Thinking" },
+  { kind: "thinking", emoji: "🤔", label: "Hmm" },
 ]
 
 const STATUS_LABEL = {
@@ -237,6 +238,9 @@ function renderTask(task, me) {
     el("span", { class: `task-status ${task.status}` }, STATUS_LABEL[task.status] || task.status),
   ])
 
+  // Task description / progress notes from the admin (markdown-style preserved)
+  const desc = task.description ? el("div", { class: "task-desc" }, task.description) : null
+
   // Reactions
   const counts = {}
   let myReaction = null
@@ -276,6 +280,7 @@ function renderTask(task, me) {
   ])
 
   node.appendChild(head)
+  if (desc) node.appendChild(desc)
   node.appendChild(reactionsRow)
   node.appendChild(commentsSection)
   node.appendChild(compose)

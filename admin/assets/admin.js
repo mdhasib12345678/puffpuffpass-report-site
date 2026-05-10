@@ -190,16 +190,38 @@ async function loadProject(projectId) {
 }
 
 function renderTaskCard(task, me, isInbox) {
-  const node = el("article", { class: `task task-admin${task.status === "revision_requested" ? " urgent" : ""}`, "data-task-id": task.id })
+  const isAutoRevision = !!task.parent_task_id
+  const node = el("article", {
+    class: `task task-admin${task.status === "revision_requested" ? " urgent" : ""}${isAutoRevision ? " auto-revision" : ""}`,
+    "data-task-id": task.id,
+  })
 
   const head = el("div", { class: "task-head" }, [
     el("div", { style: "flex:1" }, [
-      el("div", { class: "task-title" }, task.title),
+      el("div", { class: "task-title" }, [
+        isAutoRevision ? el("span", { class: "auto-tag", title: "Auto-created from a client revision request" }, "🔄 ") : null,
+        task.title,
+      ]),
       el("div", { class: "task-cat" },
         [task.category, isInbox && task.client?.name ? `${task.client.name} → ${task.project?.name}` : null].filter(Boolean).join(" · ")
       ),
     ]),
     el("span", { class: `task-status ${task.status}` }, STATUS_LABEL[task.status]),
+  ])
+
+  // Editable description / progress notes
+  const desc = el("div", { class: "task-desc-editor", style: "margin-top:10px" }, [
+    el("textarea", {
+      class: "task-desc-input",
+      placeholder: "What did you do? Paste a preview link, screenshot URL, or progress notes…",
+      "data-original": task.description || "",
+    }, task.description || ""),
+    el("div", { style: "display:flex;gap:6px;margin-top:6px;justify-content:flex-end" }, [
+      el("button", {
+        class: "btn btn-ghost btn-sm",
+        onclick: (e) => saveDescription(e, task.id),
+      }, "Save notes"),
+    ]),
   ])
 
   // Status switcher
@@ -232,6 +254,7 @@ function renderTaskCard(task, me, isInbox) {
   ])
 
   node.appendChild(head)
+  node.appendChild(desc)
   node.appendChild(statusRow)
   if (reactionsRow) node.appendChild(reactionsRow)
   if (comments.length) node.appendChild(commentsSection)
@@ -239,8 +262,24 @@ function renderTaskCard(task, me, isInbox) {
   return node
 }
 
+async function saveDescription(e, taskId) {
+  e.preventDefault()
+  const card = e.target.closest("article")
+  const ta = card.querySelector(".task-desc-input")
+  const newDesc = ta.value
+  try {
+    await api(`/clients/admin/tasks/${taskId}`, {
+      method: "PATCH",
+      body: { description: newDesc },
+    })
+    ta.dataset.original = newDesc
+    e.target.textContent = "Saved ✓"
+    setTimeout(() => { e.target.textContent = "Save notes" }, 1400)
+  } catch (err) { alert(err.message) }
+}
+
 function emoji(kind) {
-  return { like: "👍", love: "❤️", fire: "🔥", clap: "👏", thinking: "🤔" }[kind] || kind
+  return { approved: "✅", like: "👍", love: "❤️", fire: "🔥", clap: "👏", thinking: "🤔" }[kind] || kind
 }
 
 function renderComment(c) {

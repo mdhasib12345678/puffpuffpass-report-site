@@ -81,6 +81,31 @@
 .task.urgent {
   border-left: 4px solid #ff3b30;
 }
+.task.auto-revision {
+  background: linear-gradient(180deg, rgba(255,149,0,0.04) 0%, transparent 60%);
+}
+.auto-tag {
+  font-size: 13px;
+  color: #b25d00;
+  margin-right: 4px;
+}
+.task-desc-input {
+  width: 100%;
+  min-height: 60px;
+  font-size: 14px;
+  font-family: inherit;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(15,23,42,0.02);
+  resize: vertical;
+}
+.task-desc-input:focus {
+  outline: none;
+  border-color: var(--brand);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(7,94,84,0.1);
+}
 
 .empty-state {
   padding: 28px 22px;

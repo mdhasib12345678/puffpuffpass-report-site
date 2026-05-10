@@ -138,6 +138,16 @@ textarea { resize: vertical; min-height: 80px; }
 .task-status.revision_requested { background: rgba(255,59,48,0.14); color: #c1241a; }
 .task-title { flex: 1; font-weight: 600; letter-spacing: -0.01em; }
 .task-cat { color: var(--text-mute); font-size: 12px; margin-top: 2px; }
+.task-desc {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: rgba(7,94,84,0.04);
+  border-left: 3px solid var(--brand);
+  border-radius: 8px;
+  font-size: 14px;
+  white-space: pre-wrap;
+  color: var(--text);
+}
 
 .reactions { display: flex; gap: 6px; margin-top: 14px; flex-wrap: wrap; }
 .react-btn {
