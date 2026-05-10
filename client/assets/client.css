@@ -63,7 +63,17 @@ h2 { font-size: 20px; letter-spacing: -0.025em; margin: 0 0 14px; }
 h3 { font-size: 16px; letter-spacing: -0.02em; margin: 0 0 6px; }
 p { margin: 0 0 12px; color: var(--text-mute); }
 
-input[type="email"], input[type="text"], textarea {
+.field-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-mute);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+input[type="email"], input[type="text"], input[type="password"], textarea {
   width: 100%;
   padding: 12px 14px;
   border: 1px solid var(--border);

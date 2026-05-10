@@ -57,19 +57,62 @@ const el = (tag, attrs = {}, children = []) => {
 async function showLogin() {
   const root = $("#app")
   root.innerHTML = ""
-  const form = el("form", { class: "card", onsubmit: handleLoginSubmit }, [
+
+  const form = el("form", { class: "card", onsubmit: handlePasswordSubmit }, [
     el("h1", {}, "Sign in"),
-    el("p", {}, "Enter your email to receive a one-time sign-in link."),
+    el("p", {}, "Enter your email and password."),
+    el("label", { class: "field-label" }, "Email"),
     el("input", { type: "email", name: "email", placeholder: "you@company.com", required: "true", autocomplete: "email" }),
-    el("div", { style: "margin-top:14px;display:flex;gap:8px;align-items:center" }, [
-      el("button", { class: "btn", type: "submit" }, "Send sign-in link"),
+    el("label", { class: "field-label", style: "margin-top:12px" }, "Password"),
+    el("input", { type: "password", name: "password", placeholder: "••••••••", required: "true", autocomplete: "current-password" }),
+    el("div", { style: "margin-top:16px;display:flex;gap:8px;align-items:center" }, [
+      el("button", { class: "btn", type: "submit" }, "Sign in"),
       el("span", { class: "muted", id: "login-msg" }, ""),
+    ]),
+    el("div", { style: "margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:13px;color:var(--text-mute)" }, [
+      "Forgot password? ",
+      el("a", { href: "#", onclick: switchToMagicLink }, "Sign in with email link"),
     ]),
   ])
   root.appendChild(form)
 }
 
-async function handleLoginSubmit(e) {
+function switchToMagicLink(e) {
+  e.preventDefault()
+  const root = $("#app")
+  root.innerHTML = ""
+  const form = el("form", { class: "card", onsubmit: handleMagicSubmit }, [
+    el("h1", {}, "Email link"),
+    el("p", {}, "Enter your email — we'll send a one-time sign-in link."),
+    el("input", { type: "email", name: "email", placeholder: "you@company.com", required: "true", autocomplete: "email" }),
+    el("div", { style: "margin-top:14px;display:flex;gap:8px;align-items:center" }, [
+      el("button", { class: "btn", type: "submit" }, "Send link"),
+      el("span", { class: "muted", id: "login-msg" }, ""),
+    ]),
+    el("div", { style: "margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:13px" }, [
+      el("a", { href: "#", onclick: (ev) => { ev.preventDefault(); showLogin() } }, "← Back to password sign-in"),
+    ]),
+  ])
+  root.appendChild(form)
+}
+
+async function handlePasswordSubmit(e) {
+  e.preventDefault()
+  const email = e.target.email.value.trim()
+  const password = e.target.password.value
+  const msg = $("#login-msg")
+  msg.className = "muted"
+  msg.textContent = "Signing in…"
+  try {
+    await api("/clients/auth/login", { method: "POST", body: { email, password } })
+    location.href = "/client/"
+  } catch (err) {
+    msg.className = "err"
+    msg.textContent = err.status === 401 ? "Invalid email or password" : err.message
+  }
+}
+
+async function handleMagicSubmit(e) {
   e.preventDefault()
   const email = e.target.email.value.trim()
   const msg = $("#login-msg")
