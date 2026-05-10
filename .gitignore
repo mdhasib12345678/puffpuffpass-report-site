@@ -3,3 +3,8 @@ Thumbs.db
 *.log
 .vscode/
 .idea/
+
+# Local deploy credentials — never commit
+.env
+.env.*
+!.env.example
