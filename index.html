@@ -111,8 +111,7 @@
               <circle cx="100" cy="100" r="86" class="ring-fg" filter="url(#ringGlow)" style="--ring-target: 205.32;"/>
             </svg>
             <div class="ring-center">
-              <span class="pct-eyebrow">Progress</span>
-              <span class="pct"><span class="pct-num" data-target="62">0</span><span class="pct-suffix">%</span></span>
+              <span class="pct"><span class="pct-num" data-target="62">1</span><span class="pct-suffix">%</span></span>
             </div>
           </div>
           <span class="ring-caption">Project complete</span>
@@ -208,26 +207,36 @@
     p.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => p.classList.remove("open")));
   }
 
-  // Progress ring count-up (kicks off in sync with the ring-fill animation)
+  // Progress ring count-up: starts at 1, smoothly climbs to data-target (62).
+  // Slow + ease-in-out for the premium feel — paced to match the
+  // ring-fill CSS animation (3s) so the number lands as the stroke does.
   (function () {
     const el = document.querySelector(".pct-num");
     if (!el) return;
     const target = parseInt(el.dataset.target, 10) || 0;
+    const startVal = 1;
+    const dur = 3000;
+
+    const easeInOutCubic = (t) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
     const run = () => {
-      const start = performance.now();
-      const dur = 1800;
+      const begin = performance.now();
       function tick(now) {
-        const t = Math.min(1, (now - start) / dur);
-        const eased = 1 - Math.pow(1 - t, 3);
-        el.textContent = Math.round(target * eased);
+        const t = Math.min(1, (now - begin) / dur);
+        const eased = easeInOutCubic(t);
+        const value = startVal + (target - startVal) * eased;
+        el.textContent = Math.round(value);
         if (t < 1) requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
     };
+
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
       el.textContent = target;
     } else {
-      setTimeout(run, 400);
+      el.textContent = startVal;
+      setTimeout(run, 350);
     }
   })();
 </script>

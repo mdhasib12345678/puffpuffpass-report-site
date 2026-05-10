@@ -353,8 +353,11 @@ main { min-height: 60vh; }
   stroke: url(#ringGrad);
   stroke-linecap: round;
   stroke-dasharray: 540.35;       /* 2π · 86 */
-  stroke-dashoffset: 540.35;
-  animation: ring-fill 1.9s cubic-bezier(0.65,0,0.35,1) 0.4s forwards;
+  /* Pre-fill ~1% so the ring isn't empty before the JS starts.
+     1% of 540.35 ≈ 5.4, so dashoffset starts at 540.35 − 5.4 ≈ 534.9. */
+  stroke-dashoffset: 534.9;
+  /* Slow + smooth: matches the 3s count-up so number and stroke land together */
+  animation: ring-fill 3s cubic-bezier(0.4, 0.0, 0.2, 1) 0.35s forwards;
 }
 @keyframes ring-fill {
   to { stroke-dashoffset: var(--ring-target); }
@@ -363,23 +366,12 @@ main { min-height: 60vh; }
 .ring-center {
   position: absolute;
   inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
+  display: grid;
+  place-items: center;
   pointer-events: none;
 }
-.ring-center .pct-eyebrow {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #b4b7bf;
-  margin-bottom: 2px;
-}
 .ring-center .pct {
-  font-size: 64px;
+  font-size: 68px;
   font-weight: 800;
   letter-spacing: -0.045em;
   line-height: 1;
@@ -390,12 +382,13 @@ main { min-height: 60vh; }
   -webkit-text-fill-color: transparent;
   display: inline-flex;
   align-items: baseline;
+  justify-content: center;
 }
 .ring-center .pct-num { display: inline-block; min-width: 1.6ch; text-align: right; }
 .ring-center .pct-suffix {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 700;
-  margin-left: 1px;
+  margin-left: 2px;
   -webkit-text-fill-color: transparent;
 }
 
@@ -408,18 +401,33 @@ main { min-height: 60vh; }
   text-align: center;
 }
 
+/* Tablet portrait + small laptops */
+@media (max-width: 1024px) {
+  .ring-glass { width: 248px; height: 248px; }
+  .ring-svg   { width: 210px; height: 210px; }
+  .ring-center .pct { font-size: 64px; }
+  .ring-center .pct-suffix { font-size: 30px; }
+}
+/* Mobile landscape + tablet portrait */
 @media (max-width: 760px) {
   .ring { gap: 20px; }
   .ring-glass { width: 232px; height: 232px; }
   .ring-svg   { width: 196px; height: 196px; }
-  .ring-center .pct { font-size: 56px; }
-  .ring-center .pct-suffix { font-size: 26px; }
-  .ring-center .pct-eyebrow { font-size: 11px; letter-spacing: 0.2em; }
+  .ring-center .pct { font-size: 58px; }
+  .ring-center .pct-suffix { font-size: 28px; }
   .ring-caption { font-size: 11px; letter-spacing: 0.2em; }
 }
+/* Standard mobile */
+@media (max-width: 480px) {
+  .ring-glass { width: 220px; height: 220px; }
+  .ring-svg   { width: 184px; height: 184px; }
+  .ring-center .pct { font-size: 54px; }
+  .ring-center .pct-suffix { font-size: 26px; }
+}
+/* Very small screens (iPhone SE, old Android) */
 @media (max-width: 380px) {
-  .ring-glass { width: 208px; height: 208px; }
-  .ring-svg   { width: 172px; height: 172px; }
+  .ring-glass { width: 200px; height: 200px; }
+  .ring-svg   { width: 168px; height: 168px; }
   .ring-center .pct { font-size: 48px; }
   .ring-center .pct-suffix { font-size: 22px; }
 }
@@ -915,3 +923,64 @@ footer.fin .legal {
 .muted { color: var(--text-mute); }
 .text-center { text-align: center; }
 .divider { height: 1px; background: var(--border); margin: 48px 0; }
+
+/* =====================================================================
+   Final responsive polish — site-wide breakpoint sweep
+   Applied AFTER all the section-specific rules above so it cleanly
+   overrides any leftovers. Targets every common form factor:
+     ≥1440  large desktop / 4K — wider container, more breathing room
+     1024+  laptop — already the design baseline
+     768+   tablet portrait — relaxed padding, single-column grids
+     ≤480   mobile — tighter padding, smaller heading clamp floors
+     ≤380   ultra-small — extra rescaling
+   ===================================================================== */
+
+/* Large desktop: give the hero + progress widget more presence */
+@media (min-width: 1440px) {
+  .hero { padding-top: 120px; padding-bottom: 80px; }
+  .hero-progress { max-width: 1240px; }
+  .hero-progress-grid { padding: 56px; gap: 40px; }
+}
+
+/* Tablet landscape — slightly tighter widget padding */
+@media (max-width: 1024px) {
+  .hero-progress-grid { padding: 40px; gap: 28px; }
+  .container, .container-wide { padding: 0 28px; }
+  .hero { padding: 88px 22px 52px; }
+  .section-sub { font-size: 17px; margin-bottom: 36px; }
+}
+
+/* Tablet portrait + mobile landscape */
+@media (max-width: 760px) {
+  .hero-progress { padding: 0 16px; }
+  .hero-progress-grid {
+    padding: 28px 22px;
+    gap: 32px;
+    border-radius: var(--radius-xl);
+  }
+  .section-sub { font-size: 16px; line-height: 1.5; margin-bottom: 32px; }
+  .section { padding: 64px 0; }
+  .section-tight { padding: 44px 0; }
+  .container, .container-wide { padding: 0 22px; }
+}
+
+/* Standard mobile */
+@media (max-width: 480px) {
+  body { font-size: 16px; }
+  .hero { padding: 56px 18px 32px; }
+  .hero-eyebrow { font-size: 12px; margin-bottom: 12px; }
+  .hero p.tagline { font-size: 16px; line-height: 1.4; }
+  .hero-progress { padding: 0 12px; }
+  .hero-progress-grid { padding: 24px 18px; gap: 28px; border-radius: 22px; }
+  .section { padding: 52px 0; }
+  .section-tight { padding: 36px 0; }
+  .container, .container-wide { padding: 0 18px; }
+  .section-h2 { line-height: 1.18; }
+  footer.fin .legal { flex-direction: column; align-items: flex-start; }
+}
+
+/* Ultra-small (iPhone SE 1st gen, very old Android) */
+@media (max-width: 380px) {
+  .hero { padding: 48px 14px 28px; }
+  .hero-progress-grid { padding: 22px 16px; gap: 24px; }
+}
