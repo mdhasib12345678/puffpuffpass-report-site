@@ -1,0 +1,12 @@
+<?php
+// Template only — copy to auth.config.php and fill in real values.
+// auth.config.php is gitignored so the real credentials never reach Git.
+
+return [
+    'username'      => 'puffpuffpass-client',
+    'password'      => 'CHANGE-ME-IN-auth.config.php',
+    // Long random hex string — must match the value in .htaccess.
+    'cookie_secret' => 'CHANGE-ME-IN-auth.config.php',
+    // Cookie lifetime in seconds (default: 7 days).
+    'cookie_ttl'    => 7 * 24 * 3600,
+];

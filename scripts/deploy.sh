@@ -32,11 +32,17 @@ done
 DRY=false
 [ "${1:-}" = "--dry-run" ] && DRY=true
 
-# Build the list of files to upload from git (only tracked files, no secrets).
+# Build the list of files to upload from git (only tracked files), then
+# explicitly add the auth gate files (.htaccess + auth.config.php) which
+# are gitignored on purpose — they hold the report-site sign-in secret
+# and live only on the deploy machine + the server.
 mapfile -t FILES < <(
-  git ls-files \
-    | grep -vE '^(\.env|\.gitignore|README\.md|docs/|scripts/|\.github/)' \
-    | sort
+  {
+    git ls-files \
+      | grep -vE '^(\.env|\.gitignore|README\.md|docs/|scripts/|\.github/|\.env\.example$|auth\.config\.php\.example$)'
+    [ -f .htaccess ] && echo .htaccess
+    [ -f auth.config.php ] && echo auth.config.php
+  } | sort -u
 )
 
 if [ "${#FILES[@]}" -eq 0 ]; then
