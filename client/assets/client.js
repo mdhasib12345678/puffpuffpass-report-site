@@ -104,8 +104,9 @@ async function handlePasswordSubmit(e) {
   msg.className = "muted"
   msg.textContent = "Signing in…"
   try {
-    await api("/clients/auth/login", { method: "POST", body: { email, password } })
-    location.href = "/client/"
+    const r = await api("/clients/auth/login", { method: "POST", body: { email, password } })
+    // Admins go to the admin panel, clients go to the client view.
+    location.href = r.user?.is_admin ? "/admin/" : "/client/"
   } catch (err) {
     msg.className = "err"
     msg.textContent = err.status === 401 ? "Invalid email or password" : err.message
