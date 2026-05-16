@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Admin Panel · SevenArts Backend Progress</title>
+<link rel="stylesheet" href="/assets/style.css?v=202605110223" />
+<style>
+    :root {
+      --accent: #8a5a2b;
+      --accent-soft: #b07a3c;
+      --accent-dim: rgba(138, 90, 43, 0.10);
+    }
+    .nav-brand-mark { background: linear-gradient(135deg, #8a5a2b 0%, #c4925c 100%); }
+    .hero h1 { background: linear-gradient(135deg, #1d1d1f 0%, #8a5a2b 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .screenshot-frame {
+      display: block; max-width: 1000px; margin: 0 auto;
+      border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; background: var(--surface);
+      box-shadow: var(--shadow-md);
+    }
+    .screenshot-frame img { width: 100%; display: block; }
+    .screenshot-caption {
+      text-align: center; font-size: 13px; color: var(--text-mute);
+      margin-top: 14px; max-width: 800px; margin-left: auto; margin-right: auto;
+      line-height: 1.5;
+    }
+    .feature-table {
+      width: 100%; border-collapse: collapse;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); overflow: hidden;
+    }
+    .feature-table th, .feature-table td {
+      padding: 14px 18px; text-align: left; font-size: 15px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .feature-table th {
+      background: var(--bg-soft); font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute);
+      font-weight: 600;
+    }
+    .feature-table tr:last-child td { border-bottom: none; }
+    .flow-step {
+      display: flex; gap: 18px; padding: 18px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-step-num {
+      flex-shrink: 0; width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px;
+    }
+    .flow-step h4 { margin: 4px 0 6px; font-size: 16px; letter-spacing: -0.01em; }
+    .flow-step p { font-size: 14px; color: var(--text-soft); margin: 0; line-height: 1.5; }
+    .flow-step code {
+      font-size: 12px; background: var(--bg-soft); padding: 2px 6px;
+      border-radius: 4px; color: var(--text-soft);
+    }
+  </style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiM4YTVhMmIiLz48dGV4dCB4PSIzMiIgeT0iNDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTRiBQcm8gRGlzcGxheSwtYXBwbGUtc3lzdGVtLEhlbHZldGljYSxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjZmZmZmZmIj43PC90ZXh0Pjwvc3ZnPg==" />
+</head>
+<body>
+
+    <header class="nav">
+      <div class="nav-inner">
+        <a href="/sevenarts/" class="nav-brand">
+          <span class="nav-brand-mark">7</span>
+          <span>SevenArts</span>
+          <span class="muted" style="font-weight: 400; font-size: 13px;">· Backend Progress</span>
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li class="nav-item"><a class="nav-link" href="/sevenarts/">Overview</a></li><li class="nav-item"><a class="nav-link active" href="/sevenarts/admin/">Admin Panel</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/features/">Features</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/workflows/">Workflows</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/architecture/">Backend Architecture</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/remaining/">Remaining</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  
+<main>
+  <section class="hero">
+    <span class="hero-eyebrow">Live capture</span>
+    <h1>The admin panel that controls every frontend feature.</h1>
+    <p class="tagline">Every screenshot below is the real running platform, taken minutes ago. The data shown is real data sitting in your database right now.</p>
+  </section>
+  
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="section-h2" style="font-size:22px">How to read this page</h2>
+        <p>The admin panel is the single back-office where you (and any staff you grant access to) control the entire platform. There are <strong>22 separate data areas</strong> plus <strong>2 site-wide settings sections</strong>. Each one is shown below, with a short note explaining what it does and which part of the frontend it controls.</p>
+        <p>The pictures are full-page screenshots — you can scroll any of them to see the exact layout an operator sees when managing your platform.</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container-wide">
+        
+          <div style="margin-top: 0px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">1. Admin sign-in page.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/01-admin-login.png" alt="Admin sign-in page. Email + password authentication with rate limiting, audit logging, and optional two-factor authentication. Sessions stored in secure, HTTP-only cookies." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Admin sign-in page. Email + password authentication with rate limiting, audit logging, and optional two-factor authentication. Sessions stored in secure, HTTP-only cookies.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">2. Admin home.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/02-admin-dashboard.png" alt="Admin home. Every data area on the platform — users, artworks, auctions, orders, content — surfaced in one place. Grouped by purpose so an operator never has to hunt for what they need." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Admin home. Every data area on the platform — users, artworks, auctions, orders, content — surfaced in one place. Grouped by purpose so an operator never has to hunt for what they need.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">3. Users list.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/03-collection-users.png" alt="Users list. Every customer, artist and admin account on the platform. Search by email, filter by role, edit permissions." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Users list. Every customer, artist and admin account on the platform. Search by email, filter by role, edit permissions.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">4. Artworks catalogue.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/04-collection-artworks.png" alt="Artworks catalogue. The same artworks your customers see on the storefront — managed here in one place. Search, filter, edit, approve, feature, archive." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Artworks catalogue. The same artworks your customers see on the storefront — managed here in one place. Search, filter, edit, approve, feature, archive.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">5. Auctions list.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/05-collection-auctions.png" alt="Auctions list. Real lots with live, upcoming, ended and cancelled status visible at a glance. Each row is a clickable lot showing every bid, the current price and the winner." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Auctions list. Real lots with live, upcoming, ended and cancelled status visible at a glance. Each row is a clickable lot showing every bid, the current price and the winner.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">6. Bids ledger.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/06-collection-bids.png" alt="Bids ledger. Every bid placed on every auction — bidder, amount, timestamp, IP. Immutable record for dispute resolution." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Bids ledger. Every bid placed on every auction — bidder, amount, timestamp, IP. Immutable record for dispute resolution.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">7. Orders.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/07-collection-orders.png" alt="Orders. Every paid order with line items, payment status, fulfilment status, customer details." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Orders. Every paid order with line items, payment status, fulfilment status, customer details.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">8. Artist profiles.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/08-collection-artist-profiles.png" alt="Artist profiles. Approved artists with their portfolio, biography, sales history and current listings." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Artist profiles. Approved artists with their portfolio, biography, sales history and current listings.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">9. Artist applications.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/09-collection-artist-applications.png" alt="Artist applications. New artists submit through the public /apply form on the frontend — applications land here for you to review, approve or reject." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Artist applications. New artists submit through the public /apply form on the frontend — applications land here for you to review, approve or reject.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">10. Memberships.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/10-collection-memberships.png" alt="Memberships. Paid membership tiers (Pro, Featured) backed by Stripe subscriptions. View status, manage cancellations." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Memberships. Paid membership tiers (Pro, Featured) backed by Stripe subscriptions. View status, manage cancellations.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">11. Certificates of authenticity.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/11-collection-certificates.png" alt="Certificates of authenticity. Each one is a tamper-evident PDF with the artwork image hash burned in — proof the certificate matches the original art." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Certificates of authenticity. Each one is a tamper-evident PDF with the artwork image hash burned in — proof the certificate matches the original art.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">12. Events.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/12-collection-events.png" alt="Events. Exhibitions, openings, talks. Backed by the same calendar shown on the storefront /events page." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Events. Exhibitions, openings, talks. Backed by the same calendar shown on the storefront /events page.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">13. Articles & magazine.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/13-collection-articles.png" alt="Articles & magazine. Rich-text editor with images, videos, embeds. Drafts and published." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Articles & magazine. Rich-text editor with images, videos, embeds. Drafts and published.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">14. Media library.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/14-collection-media.png" alt="Media library. Every uploaded image with auto-generated thumbnails. Used by artworks, articles, events and certificates." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Media library. Every uploaded image with auto-generated thumbnails. Used by artworks, articles, events and certificates.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">15. Categories.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/15-collection-categories.png" alt="Categories. Drives the storefront filters and navigation — change here, it changes everywhere." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Categories. Drives the storefront filters and navigation — change here, it changes everywhere.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">16. Newsletter subscribers.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/16-collection-newsletter.png" alt="Newsletter subscribers. Email addresses captured from the storefront footer signup. Double opt-in: only confirmed addresses are eligible for sends." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Newsletter subscribers. Email addresses captured from the storefront footer signup. Double opt-in: only confirmed addresses are eligible for sends.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">17. Wishlists.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/17-collection-wishlists.png" alt="Wishlists. The per-customer &quot;save for later&quot; lists shown in the customer dashboard." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Wishlists. The per-customer "save for later" lists shown in the customer dashboard.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">18. Carts.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/18-collection-carts.png" alt="Carts. Live shopping carts persisted across customer sessions. Abandoned cart recovery hooks ready." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Carts. Live shopping carts persisted across customer sessions. Abandoned cart recovery hooks ready.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">19. Artist portfolios.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/19-collection-portfolios.png" alt="Artist portfolios. Curated case-study-style portfolios shown on the /portfolio pages." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Artist portfolios. Curated case-study-style portfolios shown on the /portfolio pages.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">20. Case studies.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/20-collection-case-studies.png" alt="Case studies. Long-form editorial pieces with multiple sections, images and pull quotes." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Case studies. Long-form editorial pieces with multiple sections, images and pull quotes.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">21. Careers.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/21-collection-careers.png" alt="Careers. Job openings displayed on the /careers page. Toggle active/inactive to publish/unpublish." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Careers. Job openings displayed on the /careers page. Toggle active/inactive to publish/unpublish.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">22. Navigation items.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/22-collection-navigation.png" alt="Navigation items. The storefront header & footer menus are content-managed — you can re-order, rename, or hide items without touching code." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Navigation items. The storefront header & footer menus are content-managed — you can re-order, rename, or hide items without touching code.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">23. Audit log.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/23-collection-audit-logs.png" alt="Audit log. Every sensitive action — admin logins, role changes, refunds, certificate issuance — recorded with actor, target, IP and timestamp." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Audit log. Every sensitive action — admin logins, role changes, refunds, certificate issuance — recorded with actor, target, IP and timestamp.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">24. Site Settings.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/24-global-site-settings.png" alt="Site Settings. Single source of truth for site-wide configuration: contact email, social links, currency, default region." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Site Settings. Single source of truth for site-wide configuration: contact email, social links, currency, default region.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">25. Homepage content.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/25-global-homepage-content.png" alt="Homepage content. The hero, featured artists and showcase sections on the storefront homepage — fully content-managed." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Homepage content. The hero, featured artists and showcase sections on the storefront homepage — fully content-managed.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">26. Your own admin account screen.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/26-account.png" alt="Your own admin account screen. Change password, enroll in two-factor authentication, view active sessions." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Your own admin account screen. Change password, enroll in two-factor authentication, view active sessions.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">27. Editing an artwork.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/27-artwork-edit-view.png" alt="Editing an artwork. Every field shown to customers — title, artist, dimensions, medium, price, certificate flag, status — managed in one form. Slug is auto-filled, status drives whether the piece appears on the storefront." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Editing an artwork. Every field shown to customers — title, artist, dimensions, medium, price, certificate flag, status — managed in one form. Slug is auto-filled, status drives whether the piece appears on the storefront.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">28. Editing an auction.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/28-auction-edit-view.png" alt="Editing an auction. Lot number, start/end times, reserve price, increment, current bid and winner — all in one place. State transitions are validated by the backend to prevent invalid edits." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Editing an auction. Lot number, start/end times, reserve price, increment, current bid and winner — all in one place. State transitions are validated by the backend to prevent invalid edits.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">29. Order detail.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/29-order-edit-view.png" alt="Order detail. Line items, totals, payment status, customer, fulfillment notes. Refunds can be issued from here and immediately flip the order to refunded." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">Order detail. Line items, totals, payment status, customer, fulfillment notes. Refunds can be issued from here and immediately flip the order to refunded.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">30. User profile.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/30-user-edit-view.png" alt="User profile. Change role, enable/disable account, reset 2FA, view audit history. All changes are audit-logged." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">User profile. Change role, enable/disable account, reset 2FA, view audit history. All changes are audit-logged.</p>
+    </div>
+  
+          </div>
+        
+          <div style="margin-top: 56px;">
+            <h3 style="font-size:18px;letter-spacing:-0.01em;margin-bottom:6px;color:var(--text);">31. One audit log entry expanded.</h3>
+            
+    <div style="margin: 32px 0;">
+      <div class="screenshot-frame">
+        <img src="/sevenarts/screenshots/31-audit-log-detail.png" alt="One audit log entry expanded. Shows actor, action type, target, IP address, user-agent, structured metadata — full forensic trail." loading="lazy" />
+      </div>
+      <p class="screenshot-caption">One audit log entry expanded. Shows actor, action type, target, IP address, user-agent, structured metadata — full forensic trail.</p>
+    </div>
+  
+          </div>
+        
+      </div>
+    </section>
+  
+  <section class="section-tight">
+    <div class="container" style="text-align:center; padding:48px 22px; border-top: 1px solid var(--border); margin-top: 60px;">
+      <p class="muted" style="font-size: 13px;">SevenArts · Backend Progress Report · prepared 16 May 2026</p>
+      <p class="muted" style="font-size: 12px; margin-top: 8px;">All screenshots captured live from the running backend. Data shown is real and currently in the database.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

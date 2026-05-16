@@ -1,15 +1,18 @@
 .DS_Store
 Thumbs.db
 *.log
-.vscode/
 .idea/
 
 # Local deploy credentials — never commit
-.env
-.env.*
 !.env.example
 
 # Auth secrets for the report-site sign-in gate — keep these
 # out of Git. They are deployed directly to the server only.
 auth.config.php
 .htaccess
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
+config.bat
+node_modules
