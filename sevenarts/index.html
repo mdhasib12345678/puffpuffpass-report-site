@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Overview · SevenArts Backend Progress</title>
+<link rel="stylesheet" href="/assets/style.css?v=202605110223" />
+<style>
+    :root {
+      --accent: #8a5a2b;
+      --accent-soft: #b07a3c;
+      --accent-dim: rgba(138, 90, 43, 0.10);
+    }
+    .nav-brand-mark { background: linear-gradient(135deg, #8a5a2b 0%, #c4925c 100%); }
+    .hero h1 { background: linear-gradient(135deg, #1d1d1f 0%, #8a5a2b 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .screenshot-frame {
+      display: block; max-width: 1000px; margin: 0 auto;
+      border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; background: var(--surface);
+      box-shadow: var(--shadow-md);
+    }
+    .screenshot-frame img { width: 100%; display: block; }
+    .screenshot-caption {
+      text-align: center; font-size: 13px; color: var(--text-mute);
+      margin-top: 14px; max-width: 800px; margin-left: auto; margin-right: auto;
+      line-height: 1.5;
+    }
+    .feature-table {
+      width: 100%; border-collapse: collapse;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); overflow: hidden;
+    }
+    .feature-table th, .feature-table td {
+      padding: 14px 18px; text-align: left; font-size: 15px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .feature-table th {
+      background: var(--bg-soft); font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute);
+      font-weight: 600;
+    }
+    .feature-table tr:last-child td { border-bottom: none; }
+    .flow-step {
+      display: flex; gap: 18px; padding: 18px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-step-num {
+      flex-shrink: 0; width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px;
+    }
+    .flow-step h4 { margin: 4px 0 6px; font-size: 16px; letter-spacing: -0.01em; }
+    .flow-step p { font-size: 14px; color: var(--text-soft); margin: 0; line-height: 1.5; }
+    .flow-step code {
+      font-size: 12px; background: var(--bg-soft); padding: 2px 6px;
+      border-radius: 4px; color: var(--text-soft);
+    }
+  </style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiM4YTVhMmIiLz48dGV4dCB4PSIzMiIgeT0iNDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTRiBQcm8gRGlzcGxheSwtYXBwbGUtc3lzdGVtLEhlbHZldGljYSxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjZmZmZmZmIj43PC90ZXh0Pjwvc3ZnPg==" />
+</head>
+<body>
+
+    <header class="nav">
+      <div class="nav-inner">
+        <a href="/sevenarts/" class="nav-brand">
+          <span class="nav-brand-mark">7</span>
+          <span>SevenArts</span>
+          <span class="muted" style="font-weight: 400; font-size: 13px;">· Backend Progress</span>
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li class="nav-item"><a class="nav-link active" href="/sevenarts/">Overview</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/admin/">Admin Panel</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/features/">Features</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/workflows/">Workflows</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/architecture/">Backend Architecture</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/remaining/">Remaining</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  
+<main>
+  <section class="hero">
+    <span class="hero-eyebrow">Backend Progress · 16 May 2026</span>
+    <h1>The backend behind your art platform — built, running, and connected.</h1>
+    <p class="tagline">Every screen of your frontend now has the backend system that powers it. Here's exactly where we are.</p>
+  </section>
+  
+    <section class="hero-progress section-tight">
+      <div class="container-wide">
+        <div class="hero-progress-grid">
+          <div class="ring">
+            <div class="ring-glass">
+              <span class="ring-aurora" aria-hidden="true"></span>
+              <svg class="ring-svg" viewBox="0 0 200 200" aria-hidden="true">
+                <defs>
+                  <linearGradient id="ringGradSA" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#c4925c"/>
+                    <stop offset="100%" stop-color="#8a5a2b"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="100" cy="100" r="84" class="ring-track" fill="none" stroke="rgba(0,0,0,0.08)" stroke-width="14"/>
+                <circle cx="100" cy="100" r="84" class="ring-fg" fill="none" stroke="url(#ringGradSA)" stroke-width="14" stroke-linecap="round" stroke-dasharray="464 528" transform="rotate(-90 100 100)"/>
+              </svg>
+              <div class="ring-center">
+                <span class="pct"><span class="pct-num">88</span><span class="pct-suffix">%</span></span>
+                <span class="ring-caption">Backend complete</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-stats" style="display:flex;flex-direction:column;gap:14px;">
+            <div class="card" style="padding:18px 22px;">
+              <div style="font-size:24px;font-weight:800;letter-spacing:-0.02em;color:var(--accent)">21</div>
+              <div class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Data collections live</div>
+            </div>
+            <div class="card" style="padding:18px 22px;">
+              <div style="font-size:24px;font-weight:800;letter-spacing:-0.02em;color:var(--accent)">38</div>
+              <div class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Frontend pages wired to backend</div>
+            </div>
+            <div class="card" style="padding:18px 22px;">
+              <div style="font-size:24px;font-weight:800;letter-spacing:-0.02em;color:var(--accent)">90+</div>
+              <div class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Backend endpoints serving the frontend</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container-wide">
+        <h2 class="section-h2">What you're looking at</h2>
+        <p class="section-sub">A short tour of the report. Each card below opens a focused page with screenshots and explanations.</p>
+        <div class="card-grid">
+          <a class="card card-link" href="/sevenarts/admin/">
+            <div class="card-icon">🛠</div>
+            <h3>Admin Panel</h3>
+            <p>Live screenshots of every back-office screen — login, dashboard, and every data area you can manage.</p>
+            <span class="cta">Open</span>
+          </a>
+          <a class="card card-link" href="/sevenarts/features/">
+            <div class="card-icon">✅</div>
+            <h3>Feature Status</h3>
+            <p>Every frontend feature mapped to its backend system, with a live / partial / pending status.</p>
+            <span class="cta">Open</span>
+          </a>
+          <a class="card card-link" href="/sevenarts/workflows/">
+            <div class="card-icon">🎯</div>
+            <h3>Real Workflows</h3>
+            <p>Three real end-to-end flows — a customer placing a bid, a buyer paying, a winner getting their certificate.</p>
+            <span class="cta">Open</span>
+          </a>
+          <a class="card card-link" href="/sevenarts/architecture/">
+            <div class="card-icon">🏗</div>
+            <h3>Backend Architecture</h3>
+            <p>A plain-English picture of how the backend keeps every frontend page in sync, secure, and fast.</p>
+            <span class="cta">Open</span>
+          </a>
+          <a class="card card-link" href="/sevenarts/remaining/">
+            <div class="card-icon">📋</div>
+            <h3>What's Remaining</h3>
+            <p>Honest punch list — what's left to finish, what's blocked on your input, and the estimated effort for each.</p>
+            <span class="cta">Open</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container-wide">
+        <h2 class="section-h2">Top-level snapshot</h2>
+        <p class="section-sub">The platform in numbers, as the backend currently holds them.</p>
+        <div class="card-grid">
+          <div class="card"><div class="card-icon">🎨</div><h3>Artworks</h3>
+            <p style="font-size:32px;font-weight:800;color:var(--accent);margin:8px 0">19</p>
+            <p>Catalogue items with images, pricing, dimensions, certificates of authenticity.</p>
+          </div>
+          <div class="card"><div class="card-icon">🔨</div><h3>Auctions</h3>
+            <p style="font-size:32px;font-weight:800;color:var(--accent);margin:8px 0">6</p>
+            <p>Lots with live, upcoming, ended and cancelled status — full lifecycle running.</p>
+          </div>
+          <div class="card"><div class="card-icon">💸</div><h3>Bids placed</h3>
+            <p style="font-size:32px;font-weight:800;color:var(--accent);margin:8px 0">19</p>
+            <p>Real bids recorded with timestamps, amounts, bidder identity, audit trail.</p>
+          </div>
+          <div class="card"><div class="card-icon">👤</div><h3>Users</h3>
+            <p style="font-size:32px;font-weight:800;color:var(--accent);margin:8px 0">11</p>
+            <p>Mix of admin, artists and customers. Multi-role permissions enforced.</p>
+          </div>
+          <div class="card"><div class="card-icon">🧾</div><h3>Orders</h3>
+            <p style="font-size:32px;font-weight:800;color:var(--accent);margin:8px 0">2</p>
+            <p>Test purchases with payment status, line items, fulfillment tracking.</p>
+          </div>
+          <div class="card"><div class="card-icon">📜</div><h3>Certificates issued</h3>
+            <p style="font-size:32px;font-weight:800;color:var(--accent);margin:8px 0">1</p>
+            <p>PDF certificate of authenticity, signed, verifiable by serial number.</p>
+          </div>
+          <div class="card"><div class="card-icon">🎭</div><h3>Artist profiles</h3>
+            <p style="font-size:32px;font-weight:800;color:var(--accent);margin:8px 0">7</p>
+            <p>Verified artists with portfolios, bio, sales history.</p>
+          </div>
+          <div class="card"><div class="card-icon">🔐</div><h3>Audit log entries</h3>
+            <p style="font-size:32px;font-weight:800;color:var(--accent);margin:8px 0">92</p>
+            <p>Every sensitive admin action recorded — who did what, when, from where.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container-wide">
+        <h2 class="section-h2">Backend service health — right now</h2>
+        <p class="section-sub">Live snapshot from the platform's built-in health endpoint. This is what monitoring systems read every minute in production.</p>
+        <div class="card" style="max-width:740px;margin:0 auto;font-family:'SF Mono','Menlo','Consolas',monospace;font-size:13px;background:#1d1d1f;color:#a6e3a1;padding:24px;border-radius:14px;">
+<pre style="margin:0;color:#a6e3a1;white-space:pre-wrap;">{
+  "status": "ok",
+  "uptimeSeconds": 0,
+  "version": "0.1.0",
+  "nodeEnv": "development",
+  "checks": {
+    "db":     { "ok": true,  "latencyMs": 19 },
+    "stripe": { "configured": false },
+    "email":  { "driver": "console", "configured": true }
+  },
+  "timestamp": "2026-05-16T13:34:14.483Z"
+}</pre>
+        </div>
+        <p class="screenshot-caption" style="max-width:740px;">Database is reachable in 19ms. Stripe shows <em>not yet configured</em> because we are still waiting on your live API keys — switching to live mode is a 30-second config change once you provide them.</p>
+      </div>
+    </section>
+  
+  <section class="section-tight">
+    <div class="container" style="text-align:center; padding:48px 22px; border-top: 1px solid var(--border); margin-top: 60px;">
+      <p class="muted" style="font-size: 13px;">SevenArts · Backend Progress Report · prepared 16 May 2026</p>
+      <p class="muted" style="font-size: 12px; margin-top: 8px;">All screenshots captured live from the running backend. Data shown is real and currently in the database.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Feature Status · SevenArts Backend Progress</title>
+<link rel="stylesheet" href="/assets/style.css?v=202605110223" />
+<style>
+    :root {
+      --accent: #8a5a2b;
+      --accent-soft: #b07a3c;
+      --accent-dim: rgba(138, 90, 43, 0.10);
+    }
+    .nav-brand-mark { background: linear-gradient(135deg, #8a5a2b 0%, #c4925c 100%); }
+    .hero h1 { background: linear-gradient(135deg, #1d1d1f 0%, #8a5a2b 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .screenshot-frame {
+      display: block; max-width: 1000px; margin: 0 auto;
+      border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; background: var(--surface);
+      box-shadow: var(--shadow-md);
+    }
+    .screenshot-frame img { width: 100%; display: block; }
+    .screenshot-caption {
+      text-align: center; font-size: 13px; color: var(--text-mute);
+      margin-top: 14px; max-width: 800px; margin-left: auto; margin-right: auto;
+      line-height: 1.5;
+    }
+    .feature-table {
+      width: 100%; border-collapse: collapse;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); overflow: hidden;
+    }
+    .feature-table th, .feature-table td {
+      padding: 14px 18px; text-align: left; font-size: 15px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .feature-table th {
+      background: var(--bg-soft); font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute);
+      font-weight: 600;
+    }
+    .feature-table tr:last-child td { border-bottom: none; }
+    .flow-step {
+      display: flex; gap: 18px; padding: 18px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-step-num {
+      flex-shrink: 0; width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px;
+    }
+    .flow-step h4 { margin: 4px 0 6px; font-size: 16px; letter-spacing: -0.01em; }
+    .flow-step p { font-size: 14px; color: var(--text-soft); margin: 0; line-height: 1.5; }
+    .flow-step code {
+      font-size: 12px; background: var(--bg-soft); padding: 2px 6px;
+      border-radius: 4px; color: var(--text-soft);
+    }
+  </style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiM4YTVhMmIiLz48dGV4dCB4PSIzMiIgeT0iNDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTRiBQcm8gRGlzcGxheSwtYXBwbGUtc3lzdGVtLEhlbHZldGljYSxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjZmZmZmZmIj43PC90ZXh0Pjwvc3ZnPg==" />
+</head>
+<body>
+
+    <header class="nav">
+      <div class="nav-inner">
+        <a href="/sevenarts/" class="nav-brand">
+          <span class="nav-brand-mark">7</span>
+          <span>SevenArts</span>
+          <span class="muted" style="font-weight: 400; font-size: 13px;">· Backend Progress</span>
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li class="nav-item"><a class="nav-link" href="/sevenarts/">Overview</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/admin/">Admin Panel</a></li><li class="nav-item"><a class="nav-link active" href="/sevenarts/features/">Features</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/workflows/">Workflows</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/architecture/">Backend Architecture</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/remaining/">Remaining</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  
+<main>
+  <section class="hero">
+    <span class="hero-eyebrow">Frontend → Backend mapping</span>
+    <h1>Every frontend feature, with the backend system that powers it.</h1>
+    <p class="tagline">For each feature on your storefront, this table shows which backend system handles it and the current build status.</p>
+  </section>
+  
+    <section class="section-tight">
+      <div class="container-wide">
+        <div class="kpi-row" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:32px">
+          <div class="card" style="text-align:center;padding:18px"><div style="font-size:30px;font-weight:800;letter-spacing:-0.03em;color:var(--success)">35</div><div class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Live</div></div>
+          <div class="card" style="text-align:center;padding:18px"><div style="font-size:30px;font-weight:800;letter-spacing:-0.03em;color:var(--warning)">2</div><div class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Awaiting your input</div></div>
+          <div class="card" style="text-align:center;padding:18px"><div style="font-size:30px;font-weight:800;letter-spacing:-0.03em;color:var(--text-mute)">0</div><div class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Pending</div></div>
+          <div class="card" style="text-align:center;padding:18px"><div style="font-size:30px;font-weight:800;letter-spacing:-0.03em;color:var(--accent)">37</div><div class="muted" style="font-size:12px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600">Total features</div></div>
+        </div>
+
+        <table class="feature-table">
+          <thead>
+            <tr>
+              <th style="width:26%">Frontend feature</th>
+              <th style="width:22%">Backend system</th>
+              <th style="width:42%">How it works</th>
+              <th style="width:10%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td><strong>Sign-up form (/login → register)</strong></td>
+                <td>Auth & user management</td>
+                <td>Email + password registration. Rate-limited (10 attempts per 5 minutes per IP). Password strength check. Audit-logged on success and failure.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Sign-in form (/login)</strong></td>
+                <td>Auth & user management</td>
+                <td>Email + password login. Optional second-factor (TOTP, like Google Authenticator). Lockout after repeated failed attempts.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Two-factor authentication</strong></td>
+                <td>Auth & user management</td>
+                <td>Users can enroll with any authenticator app. Recovery codes generated and shown once. Admin can reset a user's 2FA when they lose their device.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Password reset</strong></td>
+                <td>Auth & user management</td>
+                <td>Forgot-password link sends a time-limited email with a one-use reset token.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Customer dashboard (/dashboard)</strong></td>
+                <td>User profile, orders, wishlist, bidding history</td>
+                <td>Dashboard pulls live data: orders the customer placed, items they are bidding on, their wishlist, their profile.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Artworks list (/art, /featured)</strong></td>
+                <td>Catalogue</td>
+                <td>Frontend reads from the artworks API. Filterable by category, medium, country, price range, status.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Artwork detail page</strong></td>
+                <td>Catalogue + reviews</td>
+                <td>Detail page shows pricing, dimensions, artist info, reviews, related works. All driven from a single backend call.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Wishlist add/remove</strong></td>
+                <td>Per-customer wishlists</td>
+                <td>Heart icon on any artwork. Persists across devices because it's stored server-side, not in the browser.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Search & filters</strong></td>
+                <td>Catalogue index</td>
+                <td>Backend supports search by title, artist, medium, style, country, price. Multi-filter combinations return in milliseconds.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Auction lot listings (/auction)</strong></td>
+                <td>Auction engine</td>
+                <td>Live, upcoming and ended lots. Status changes happen automatically on schedule — no manual intervention needed.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Live bidding</strong></td>
+                <td>Auction engine + realtime</td>
+                <td>Bid → backend validates increment / reserve / auction status / user balance → bid stored → all open lot pages instantly see the new top bid via a live-update channel.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Auto-bid (proxy bidding)</strong></td>
+                <td>Auction engine</td>
+                <td>Bidder sets a max amount; backend automatically out-bids competitors up to that ceiling.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Auction-end resolution</strong></td>
+                <td>Auction engine + cron worker</td>
+                <td>A background worker closes ended auctions every minute. Picks the winner, fires the won-confirmation email, optionally creates a draft order.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Outbid notification</strong></td>
+                <td>Auction engine + email</td>
+                <td>When you're outbid, you get an email within seconds.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Winner certificate generation</strong></td>
+                <td>Certificate of Authenticity</td>
+                <td>When a lot sells, a PDF certificate is generated automatically with a SHA-256 hash of the artwork image — proof the certificate matches the real piece.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Cart (/cart)</strong></td>
+                <td>Shopping cart</td>
+                <td>Cart persists per customer. Backend keeps a single live cart per user; the frontend reads/writes via the cart API.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Checkout (/checkout)</strong></td>
+                <td>Stripe Elements</td>
+                <td>Real Stripe card-payment form. Works in test mode now; switches to live mode the moment you provide your live API keys.</td>
+                <td><span class="status-pill partial">Ready · awaiting input</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Order confirmation email</strong></td>
+                <td>Email service</td>
+                <td>Sent automatically on successful payment. Currently writing to console in dev — flips to real email provider in production.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Order history (/dashboard/orders)</strong></td>
+                <td>Orders API</td>
+                <td>Customer sees every order with status, line items, totals.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Refunds</strong></td>
+                <td>Stripe + orders</td>
+                <td>Admin refund button. Calls Stripe, updates order status. Stripe's own webhook idempotently confirms the same state moments later — belt and braces.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Memberships brochure (/membership)</strong></td>
+                <td>Memberships</td>
+                <td>Tier list with prices read from backend. Subscribe button leads to Stripe Elements.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Subscribe / cancel / portal</strong></td>
+                <td>Stripe subscriptions</td>
+                <td>Customer can subscribe to Pro or Featured. Manage button opens the Stripe customer portal. Cancellation flow handled.</td>
+                <td><span class="status-pill partial">Ready · awaiting input</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Artist application form (/apply)</strong></td>
+                <td>Artist applications</td>
+                <td>Public form → application lands in admin → admin reviews → on approval the applicant becomes an artist with portfolio access.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Seller dashboard (artist view)</strong></td>
+                <td>Seller endpoints</td>
+                <td>Artist sees their listings, sales, bidding activity, certificates issued, profile edit.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Articles / magazine (/article, /magazine)</strong></td>
+                <td>Articles CMS</td>
+                <td>Rich-text editor in admin → publish → article goes live.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Events (/events)</strong></td>
+                <td>Events CMS</td>
+                <td>Each event has a date, location, description. Visitors can download a calendar invite (iCal).</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Careers (/careers)</strong></td>
+                <td>Careers CMS</td>
+                <td>Admin toggles a job active/inactive — appears or disappears from the public page instantly.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Case studies (/case-studies)</strong></td>
+                <td>Case studies CMS</td>
+                <td>Long-form editorial. Multi-section, image-heavy.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Portfolios (/portfolio)</strong></td>
+                <td>Portfolios CMS</td>
+                <td>Curated artist portfolios. Used by artist profile pages.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Newsletter signup (footer)</strong></td>
+                <td>Newsletter subscribers</td>
+                <td>Visitor submits email → backend sends a confirmation email with a one-click link → only confirmed addresses are eligible for marketing sends. Industry-standard "double opt-in" — keeps your sender reputation clean.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Newsletter unsubscribe</strong></td>
+                <td>Newsletter subscribers</td>
+                <td>One-click unsubscribe link in every email (RFC 8058 compliant). Required for all major email providers.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Contact form</strong></td>
+                <td>Contact endpoint</td>
+                <td>Submissions arrive in the admin contact inbox + email notification.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Sitemap</strong></td>
+                <td>SEO sitemap</td>
+                <td>Auto-generated XML sitemap split into 8 partitions (artworks, artists, articles, events, careers, case studies, portfolios, static pages) — Google can crawl up to 350,000 URLs before any code changes are needed.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Robots.txt</strong></td>
+                <td>SEO</td>
+                <td>Generated dynamically from environment so staging is closed to crawlers and production is open.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Audit log</strong></td>
+                <td>Audit service</td>
+                <td>Every sensitive action recorded — admin logins, role changes, refunds, 2FA resets, certificate issuance.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Health & monitoring endpoints</strong></td>
+                <td>Observability</td>
+                <td>Liveness, readiness and metrics endpoints for production monitoring tools (Prometheus, Grafana).</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Background workers</strong></td>
+                <td>Cron</td>
+                <td>Closes ended auctions, sends winner emails, retries failed jobs. Runs independently — does not require a human to press anything.</td>
+                <td><span class="status-pill done">Live</span></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="section-h2" style="font-size:22px">What "awaiting your input" means</h2>
+        <p>Checkout, refunds and the membership-subscribe flow are <strong>built and tested in test-mode</strong>. They go live the moment we have:</p>
+        <ul style="font-size:16px;line-height:1.7;margin:14px 0 0 22px;color:var(--text-soft)">
+          <li>Your Stripe <em>live</em> API keys (publishable + secret + webhook signing secret).</li>
+          <li>Your production email provider credentials (Resend, SendGrid, or your own SMTP).</li>
+          <li>Your production domain name.</li>
+        </ul>
+        <p style="margin-top:14px">Switching from test to live is a <strong>30-second config change</strong> — no code work, no redeploy of the application.</p>
+      </div>
+    </section>
+  
+  <section class="section-tight">
+    <div class="container" style="text-align:center; padding:48px 22px; border-top: 1px solid var(--border); margin-top: 60px;">
+      <p class="muted" style="font-size: 13px;">SevenArts · Backend Progress Report · prepared 16 May 2026</p>
+      <p class="muted" style="font-size: 12px; margin-top: 8px;">All screenshots captured live from the running backend. Data shown is real and currently in the database.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

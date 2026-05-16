@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Real Workflows · SevenArts Backend Progress</title>
+<link rel="stylesheet" href="/assets/style.css?v=202605110223" />
+<style>
+    :root {
+      --accent: #8a5a2b;
+      --accent-soft: #b07a3c;
+      --accent-dim: rgba(138, 90, 43, 0.10);
+    }
+    .nav-brand-mark { background: linear-gradient(135deg, #8a5a2b 0%, #c4925c 100%); }
+    .hero h1 { background: linear-gradient(135deg, #1d1d1f 0%, #8a5a2b 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .screenshot-frame {
+      display: block; max-width: 1000px; margin: 0 auto;
+      border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; background: var(--surface);
+      box-shadow: var(--shadow-md);
+    }
+    .screenshot-frame img { width: 100%; display: block; }
+    .screenshot-caption {
+      text-align: center; font-size: 13px; color: var(--text-mute);
+      margin-top: 14px; max-width: 800px; margin-left: auto; margin-right: auto;
+      line-height: 1.5;
+    }
+    .feature-table {
+      width: 100%; border-collapse: collapse;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); overflow: hidden;
+    }
+    .feature-table th, .feature-table td {
+      padding: 14px 18px; text-align: left; font-size: 15px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .feature-table th {
+      background: var(--bg-soft); font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute);
+      font-weight: 600;
+    }
+    .feature-table tr:last-child td { border-bottom: none; }
+    .flow-step {
+      display: flex; gap: 18px; padding: 18px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-step-num {
+      flex-shrink: 0; width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px;
+    }
+    .flow-step h4 { margin: 4px 0 6px; font-size: 16px; letter-spacing: -0.01em; }
+    .flow-step p { font-size: 14px; color: var(--text-soft); margin: 0; line-height: 1.5; }
+    .flow-step code {
+      font-size: 12px; background: var(--bg-soft); padding: 2px 6px;
+      border-radius: 4px; color: var(--text-soft);
+    }
+  </style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiM4YTVhMmIiLz48dGV4dCB4PSIzMiIgeT0iNDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTRiBQcm8gRGlzcGxheSwtYXBwbGUtc3lzdGVtLEhlbHZldGljYSxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjZmZmZmZmIj43PC90ZXh0Pjwvc3ZnPg==" />
+</head>
+<body>
+
+    <header class="nav">
+      <div class="nav-inner">
+        <a href="/sevenarts/" class="nav-brand">
+          <span class="nav-brand-mark">7</span>
+          <span>SevenArts</span>
+          <span class="muted" style="font-weight: 400; font-size: 13px;">· Backend Progress</span>
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li class="nav-item"><a class="nav-link" href="/sevenarts/">Overview</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/admin/">Admin Panel</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/features/">Features</a></li><li class="nav-item"><a class="nav-link active" href="/sevenarts/workflows/">Workflows</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/architecture/">Backend Architecture</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/remaining/">Remaining</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  
+<main>
+  <section class="hero">
+    <span class="hero-eyebrow">End-to-end</span>
+    <h1>How the backend handles three real customer journeys.</h1>
+    <p class="tagline">Step-by-step, what happens behind the scenes when a customer registers, places a bid, and wins a lot.</p>
+  </section>
+  
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="section-h2">Workflow 1 — A new customer registers and signs in</h2>
+        <p class="section-sub">From the public sign-up form to a fully logged-in dashboard session, in milliseconds.</p>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:22px 28px;margin-top:18px">
+          <div class="flow-step"><div class="flow-step-num">1</div><div>
+            <h4>Visitor opens the sign-up form on the storefront</h4>
+            <p>The frontend form sends the email, password and name to <strong>POST /api/auth/register</strong>.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">2</div><div>
+            <h4>Backend rate-limits the request</h4>
+            <p>If the same IP has tried more than 10 times in 5 minutes, the request is refused with a clear error — protects against automated sign-up abuse.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">3</div><div>
+            <h4>Backend validates inputs and checks the password strength</h4>
+            <p>Email must be a real email format. Password must be at least 12 characters and not in the list of common breached passwords.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">4</div><div>
+            <h4>Backend checks the email isn't already in use</h4>
+            <p>If it is, the request is rejected with a clear "email already registered" message — and the attempt is logged so we can spot abuse patterns.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">5</div><div>
+            <h4>Backend creates the user with role = customer</h4>
+            <p>The role is fixed by the backend — a visitor cannot trick the form into making them an admin.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">6</div><div>
+            <h4>Backend logs the user in immediately</h4>
+            <p>A secure session cookie is returned so the frontend can take the customer straight to their dashboard — no extra "now please log in" step.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">7</div><div>
+            <h4>Action is recorded in the audit log</h4>
+            <p>Who signed up, from which IP, at what time. Available to you in the admin panel under "Audit Logs".</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="section-h2">Workflow 2 — A customer places a bid on a live auction</h2>
+        <p class="section-sub">From clicking "place bid" to the new price showing up on everyone else's open browser tab.</p>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:22px 28px;margin-top:18px">
+          <div class="flow-step"><div class="flow-step-num">1</div><div>
+            <h4>Logged-in customer opens an auction lot page</h4>
+            <p>Frontend reads the lot details, current top bid and bid history from <strong>GET /api/auctions/[id]</strong>.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">2</div><div>
+            <h4>Customer enters a bid amount and clicks "Place Bid"</h4>
+            <p>Frontend sends <strong>POST /api/auctions/[id]/bid</strong> with the amount.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">3</div><div>
+            <h4>Backend runs a wall of checks before accepting</h4>
+            <p>Auction must be in <em>live</em> status (not upcoming, ended or cancelled). Bid must beat the current top by at least the minimum increment. Reserve price must be met. The bidder must not be the seller. All of these run inside a single database transaction so the bid either fully succeeds or fully fails — never half-applied.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">4</div><div>
+            <h4>Auto-bid resolution</h4>
+            <p>If the previous high bidder had set a max-auto-bid, the backend instantly raises their bid to keep them on top — up to their ceiling. The system can play several auto-bid rounds in one request without sending anyone email storms.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">5</div><div>
+            <h4>Bid is persisted; auction record updated atomically</h4>
+            <p>The bid lands in the bids ledger and the auction's "current bid" and "leading bidder" fields are updated in the same transaction.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">6</div><div>
+            <h4>Everyone watching the lot sees the new price within a second</h4>
+            <p>A live-update channel pushes the new top bid to every connected viewer — no need for them to refresh the page.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">7</div><div>
+            <h4>Out-bid email</h4>
+            <p>The previously-leading bidder receives an "you were outbid" email within seconds, with a button to return to the lot.</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="section-h2">Workflow 3 — An auction ends and the winner gets a certificate</h2>
+        <p class="section-sub">Fully automated. No human in the loop — closes itself, picks the winner, emails the parties, generates the PDF.</p>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:22px 28px;margin-top:18px">
+          <div class="flow-step"><div class="flow-step-num">1</div><div>
+            <h4>Background worker runs every minute</h4>
+            <p>A separate worker process — independent of the website — checks for auctions whose end time has passed.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">2</div><div>
+            <h4>For each ended auction, the worker resolves the winner</h4>
+            <p>If there's at least one bid above the reserve, the highest bidder wins. If no bids met the reserve, the lot is marked <em>not sold</em>.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">3</div><div>
+            <h4>Auction status transitions to "sold" or "ended"</h4>
+            <p>This change is what makes the storefront show "winning bid" instead of "place bid" — no manual flip needed.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">4</div><div>
+            <h4>"You won" email goes to the winner</h4>
+            <p>Includes the lot, the price they paid, and the link to complete payment.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">5</div><div>
+            <h4>Once paid, certificate of authenticity is generated</h4>
+            <p>A PDF is created that includes the artwork image, artist name, dimensions, sale date, and a <strong>SHA-256 cryptographic hash of the artwork's image file</strong>. If anyone ever tries to swap the image, the hash on the certificate won't match — instant tamper detection.</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">6</div><div>
+            <h4>Certificate verification endpoint</h4>
+            <p>Anyone (a future buyer, an insurer, an auctioneer) can paste the certificate's serial number into <code>/certificate/verify</code> on the storefront and instantly see "yes, this certificate is authentic and refers to this artwork."</p>
+          </div></div>
+          <div class="flow-step"><div class="flow-step-num">7</div><div>
+            <h4>Every step is audit-logged</h4>
+            <p>Winner resolution, payment confirmation, certificate issuance — all stamped with timestamps and actor identity for compliance.</p>
+          </div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="section-h2" style="font-size:22px">Why this matters</h2>
+        <p>You do not need to manually close auctions. You do not need to manually send "you won" emails. You do not need to manually generate certificates. <strong>The platform runs itself.</strong> Your only involvement is to add new artworks, approve new artists, and watch the dashboard.</p>
+      </div>
+    </section>
+  
+  <section class="section-tight">
+    <div class="container" style="text-align:center; padding:48px 22px; border-top: 1px solid var(--border); margin-top: 60px;">
+      <p class="muted" style="font-size: 13px;">SevenArts · Backend Progress Report · prepared 16 May 2026</p>
+      <p class="muted" style="font-size: 12px; margin-top: 8px;">All screenshots captured live from the running backend. Data shown is real and currently in the database.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

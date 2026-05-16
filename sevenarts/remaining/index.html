@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex,nofollow" />
+<title>What's Remaining · SevenArts Backend Progress</title>
+<link rel="stylesheet" href="/assets/style.css?v=202605110223" />
+<style>
+    :root {
+      --accent: #8a5a2b;
+      --accent-soft: #b07a3c;
+      --accent-dim: rgba(138, 90, 43, 0.10);
+    }
+    .nav-brand-mark { background: linear-gradient(135deg, #8a5a2b 0%, #c4925c 100%); }
+    .hero h1 { background: linear-gradient(135deg, #1d1d1f 0%, #8a5a2b 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .screenshot-frame {
+      display: block; max-width: 1000px; margin: 0 auto;
+      border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; background: var(--surface);
+      box-shadow: var(--shadow-md);
+    }
+    .screenshot-frame img { width: 100%; display: block; }
+    .screenshot-caption {
+      text-align: center; font-size: 13px; color: var(--text-mute);
+      margin-top: 14px; max-width: 800px; margin-left: auto; margin-right: auto;
+      line-height: 1.5;
+    }
+    .feature-table {
+      width: 100%; border-collapse: collapse;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); overflow: hidden;
+    }
+    .feature-table th, .feature-table td {
+      padding: 14px 18px; text-align: left; font-size: 15px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .feature-table th {
+      background: var(--bg-soft); font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute);
+      font-weight: 600;
+    }
+    .feature-table tr:last-child td { border-bottom: none; }
+    .flow-step {
+      display: flex; gap: 18px; padding: 18px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-step-num {
+      flex-shrink: 0; width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px;
+    }
+    .flow-step h4 { margin: 4px 0 6px; font-size: 16px; letter-spacing: -0.01em; }
+    .flow-step p { font-size: 14px; color: var(--text-soft); margin: 0; line-height: 1.5; }
+    .flow-step code {
+      font-size: 12px; background: var(--bg-soft); padding: 2px 6px;
+      border-radius: 4px; color: var(--text-soft);
+    }
+  </style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiM4YTVhMmIiLz48dGV4dCB4PSIzMiIgeT0iNDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTRiBQcm8gRGlzcGxheSwtYXBwbGUtc3lzdGVtLEhlbHZldGljYSxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjZmZmZmZmIj43PC90ZXh0Pjwvc3ZnPg==" />
+</head>
+<body>
+
+    <header class="nav">
+      <div class="nav-inner">
+        <a href="/sevenarts/" class="nav-brand">
+          <span class="nav-brand-mark">7</span>
+          <span>SevenArts</span>
+          <span class="muted" style="font-weight: 400; font-size: 13px;">· Backend Progress</span>
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li class="nav-item"><a class="nav-link" href="/sevenarts/">Overview</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/admin/">Admin Panel</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/features/">Features</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/workflows/">Workflows</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/architecture/">Backend Architecture</a></li><li class="nav-item"><a class="nav-link active" href="/sevenarts/remaining/">Remaining</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  
+<main>
+  <section class="hero">
+    <span class="hero-eyebrow">Honest punch list</span>
+    <h1>What's left, what's blocked on your input, what's polish.</h1>
+    <p class="tagline">No surprises — here's exactly what stands between today and a production launch.</p>
+  </section>
+  
+    <section class="section-tight">
+      <div class="container-wide">
+        <table class="feature-table">
+          <thead>
+            <tr>
+              <th style="width:28%">Item</th>
+              <th style="width:18%">Category</th>
+              <th style="width:42%">Details</th>
+              <th style="width:12%">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td><strong>Stripe live keys integration</strong></td>
+                <td>Awaiting your input</td>
+                <td>Switch from test-mode to live payments. 30-second config change once you provide live keys.</td>
+                <td><span class="status-pill partial">Ready · awaiting input</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Production email provider</strong></td>
+                <td>Awaiting your input</td>
+                <td>Connect Resend / SendGrid / SMTP. Today the system writes emails to the developer console for testing.</td>
+                <td><span class="status-pill partial">Ready · awaiting input</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Production domain & TLS certificate</strong></td>
+                <td>Awaiting your input</td>
+                <td>Backend supports HTTPS out of the box once a certificate is installed. Domain is needed to issue one.</td>
+                <td><span class="status-pill partial">Ready · awaiting input</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Image storage on cloud (S3)</strong></td>
+                <td>Awaiting your input</td>
+                <td>Backend supports S3-compatible storage. Bucket credentials needed. Currently using local disk for development.</td>
+                <td><span class="status-pill partial">Ready · awaiting input</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>MongoDB Atlas cluster URL</strong></td>
+                <td>Awaiting your input</td>
+                <td>For production we recommend MongoDB Atlas. Backend will switch over with a single connection-string change.</td>
+                <td><span class="status-pill partial">Ready · awaiting input</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>"Resend winner email" UI button</strong></td>
+                <td>Polish</td>
+                <td>Endpoint already exists; needs a clickable button inside the auction edit screen.</td>
+                <td><span class="status-pill pending">Pending</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>"Issue refund" UI button</strong></td>
+                <td>Polish</td>
+                <td>Endpoint already exists; needs a clickable button inside the order edit screen.</td>
+                <td><span class="status-pill pending">Pending</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Two-factor enrolment QR-code in admin</strong></td>
+                <td>Polish</td>
+                <td>Today admins enrol via API call; needs a self-service screen in the admin panel.</td>
+                <td><span class="status-pill pending">Pending</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Bulk image uploads</strong></td>
+                <td>Nice-to-have</td>
+                <td>Currently artworks are uploaded one image at a time. Drag-and-drop bulk import could save artist setup time.</td>
+                <td><span class="status-pill pending">Pending</span></td>
+              </tr>
+            
+              <tr>
+                <td><strong>Multi-language storefront</strong></td>
+                <td>Out of scope</td>
+                <td>Frontend was delivered in English only. Adding Spanish / French / etc. requires translation passes plus a frontend i18n setup — not contracted.</td>
+                <td><span class="status-pill pending">Pending</span></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="section-h2">What you need to provide to unblock production launch</h2>
+        <div class="list">
+          <ul>
+            <li><strong>Stripe live API keys</strong> — publishable, secret and webhook signing secret. Generated in your Stripe dashboard once you complete the live-mode application.</li>
+            <li><strong>An email provider account</strong> — Resend (recommended), SendGrid, or your own SMTP details. Tell me which and provide the API key.</li>
+            <li><strong>A production domain</strong> — e.g. <code>sevenarts.com</code>. You purchase it, we point it at the production server.</li>
+            <li><strong>An S3-compatible image bucket</strong> — any provider works (Hostinger Object Storage, AWS S3, Cloudflare R2, Backblaze B2). Access key + secret + bucket name.</li>
+            <li><strong>A MongoDB Atlas connection string</strong> — free tier is enough to start with, takes 10 minutes to set up.</li>
+          </ul>
+        </div>
+        <p style="margin-top:18px">Once those five are in hand, the platform can be deployed to production and made publicly accessible within the same day.</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="section-h2">What "polish" items mean</h2>
+        <p>The polish items in the table above are <strong>refinements</strong>, not missing features. Every one of them works today through an admin command or API call — the missing piece is just a button in the admin screen that makes it easier to do without help. They can be added incrementally after launch without any disruption.</p>
+      </div>
+    </section>
+  
+  <section class="section-tight">
+    <div class="container" style="text-align:center; padding:48px 22px; border-top: 1px solid var(--border); margin-top: 60px;">
+      <p class="muted" style="font-size: 13px;">SevenArts · Backend Progress Report · prepared 16 May 2026</p>
+      <p class="muted" style="font-size: 12px; margin-top: 8px;">All screenshots captured live from the running backend. Data shown is real and currently in the database.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

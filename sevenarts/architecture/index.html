@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex,nofollow" />
+<title>Backend Architecture · SevenArts Backend Progress</title>
+<link rel="stylesheet" href="/assets/style.css?v=202605110223" />
+<style>
+    :root {
+      --accent: #8a5a2b;
+      --accent-soft: #b07a3c;
+      --accent-dim: rgba(138, 90, 43, 0.10);
+    }
+    .nav-brand-mark { background: linear-gradient(135deg, #8a5a2b 0%, #c4925c 100%); }
+    .hero h1 { background: linear-gradient(135deg, #1d1d1f 0%, #8a5a2b 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .screenshot-frame {
+      display: block; max-width: 1000px; margin: 0 auto;
+      border: 1px solid var(--border); border-radius: 14px;
+      overflow: hidden; background: var(--surface);
+      box-shadow: var(--shadow-md);
+    }
+    .screenshot-frame img { width: 100%; display: block; }
+    .screenshot-caption {
+      text-align: center; font-size: 13px; color: var(--text-mute);
+      margin-top: 14px; max-width: 800px; margin-left: auto; margin-right: auto;
+      line-height: 1.5;
+    }
+    .feature-table {
+      width: 100%; border-collapse: collapse;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); overflow: hidden;
+    }
+    .feature-table th, .feature-table td {
+      padding: 14px 18px; text-align: left; font-size: 15px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .feature-table th {
+      background: var(--bg-soft); font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-mute);
+      font-weight: 600;
+    }
+    .feature-table tr:last-child td { border-bottom: none; }
+    .flow-step {
+      display: flex; gap: 18px; padding: 18px 0;
+      border-bottom: 1px dashed var(--border);
+    }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-step-num {
+      flex-shrink: 0; width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--accent); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px;
+    }
+    .flow-step h4 { margin: 4px 0 6px; font-size: 16px; letter-spacing: -0.01em; }
+    .flow-step p { font-size: 14px; color: var(--text-soft); margin: 0; line-height: 1.5; }
+    .flow-step code {
+      font-size: 12px; background: var(--bg-soft); padding: 2px 6px;
+      border-radius: 4px; color: var(--text-soft);
+    }
+  </style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+PHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTQiIGZpbGw9IiM4YTVhMmIiLz48dGV4dCB4PSIzMiIgeT0iNDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTRiBQcm8gRGlzcGxheSwtYXBwbGUtc3lzdGVtLEhlbHZldGljYSxzYW5zLXNlcmlmIiBmb250LXNpemU9IjM4IiBmb250LXdlaWdodD0iODAwIiBmaWxsPSIjZmZmZmZmIj43PC90ZXh0Pjwvc3ZnPg==" />
+</head>
+<body>
+
+    <header class="nav">
+      <div class="nav-inner">
+        <a href="/sevenarts/" class="nav-brand">
+          <span class="nav-brand-mark">7</span>
+          <span>SevenArts</span>
+          <span class="muted" style="font-weight: 400; font-size: 13px;">· Backend Progress</span>
+        </a>
+        <nav>
+          <ul class="nav-links">
+            <li class="nav-item"><a class="nav-link" href="/sevenarts/">Overview</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/admin/">Admin Panel</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/features/">Features</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/workflows/">Workflows</a></li><li class="nav-item"><a class="nav-link active" href="/sevenarts/architecture/">Backend Architecture</a></li><li class="nav-item"><a class="nav-link" href="/sevenarts/remaining/">Remaining</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  
+<main>
+  <section class="hero">
+    <span class="hero-eyebrow">In plain English</span>
+    <h1>How the backend keeps every frontend page in sync, secure and fast.</h1>
+    <p class="tagline">No jargon. A picture of the moving parts and why they are arranged the way they are.</p>
+  </section>
+  
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="section-h2">The three machines</h2>
+        <p>Your platform runs as three coordinated services. Each does one job and only one job — if one of them needs maintenance, the others keep working.</p>
+
+        <div class="card-grid" style="margin-top:22px">
+          <div class="card">
+            <div class="card-icon">🌐</div>
+            <h3>The Storefront</h3>
+            <p>The website your customers and artists visit. Every page they see is rendered here. It does <em>not</em> hold any data of its own — it asks the API for everything.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">⚙️</div>
+            <h3>The API & Admin</h3>
+            <p>The heart of the platform. Handles every login, every bid, every payment, every form submission. Also serves the admin panel you saw on the previous page.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">⚡</div>
+            <h3>The Live-Update Channel</h3>
+            <p>A separate, lightweight service whose only job is pushing live bid updates to every connected viewer. Keeps the auction page feeling instantaneous.</p>
+          </div>
+        </div>
+
+        <p style="margin-top:24px">Behind them is <strong>one shared database</strong> that stores everything. Multiple copies of the API & Admin can read from the same database, which is how the platform scales as traffic grows.</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="section-h2">How a frontend feature connects to the backend</h2>
+        <p>Every frontend feature follows the same simple pattern. Take "place a bid" as an example:</p>
+
+        <div style="margin:24px 0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-xl);padding:24px 28px;font-family:'SF Mono','Menlo','Consolas',monospace;font-size:13px;line-height:1.8;color:var(--text-soft)">
+          <div style="color:var(--accent);font-weight:600;margin-bottom:8px">[Customer browser]</div>
+          &nbsp;&nbsp;↓ &nbsp;clicks "Place Bid"<br>
+          <div style="color:var(--accent);font-weight:600;margin-top:8px">[Storefront]</div>
+          &nbsp;&nbsp;↓ &nbsp;sends bid amount to the API<br>
+          <div style="color:var(--accent);font-weight:600;margin-top:8px">[API]</div>
+          &nbsp;&nbsp;↓ &nbsp;validates &nbsp;→&nbsp; saves to database &nbsp;→&nbsp; tells the Live-Update Channel<br>
+          <div style="color:var(--accent);font-weight:600;margin-top:8px">[Live-Update Channel]</div>
+          &nbsp;&nbsp;↓ &nbsp;broadcasts new top bid to every connected viewer<br>
+          <div style="color:var(--accent);font-weight:600;margin-top:8px">[Other customers' browsers]</div>
+          &nbsp;&nbsp;✓ &nbsp;see the new bid in under a second, no refresh needed
+        </div>
+
+        <p>The same shape applies to every other feature — sign up, place an order, submit an artist application, subscribe to the newsletter, post an article. Just the data and the validation rules change.</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="section-h2">What the backend protects against, automatically</h2>
+
+        <div class="kv">
+          <div class="kv-row">
+            <div class="kv-key">Brute-force login attempts</div>
+            <div class="kv-value">Repeated failed sign-ins from one IP get blocked for several minutes. Adds friction for attackers, invisible to real users.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Weak passwords</div>
+            <div class="kv-value">Minimum 12 characters, real-time strength check, common-breach blacklist. Customers cannot create unprotected accounts.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Account takeover</div>
+            <div class="kv-value">Optional two-factor authentication (TOTP — works with Google Authenticator, Authy, 1Password and similar). One-time recovery codes for lost devices.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Cross-site request forgery</div>
+            <div class="kv-value">Every form is signed with a per-session token; copy-pasted URLs from an attacker can't fire actions on your behalf.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Injection attacks (SQL / NoSQL / script)</div>
+            <div class="kv-value">Every input is validated and sanitised before reaching the database. No raw user input ever flows through.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Sensitive-data exposure</div>
+            <div class="kv-value">Passwords are one-way hashed (cannot be read back, even by us). Stripe never sends raw card numbers through your platform — payment fields are hosted on Stripe's own infrastructure.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Insecure direct object reference</div>
+            <div class="kv-value">A customer cannot browse to <code>/orders/12345</code> to see someone else's order — every request checks "is this user allowed to see this record?".</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Tampered certificates</div>
+            <div class="kv-value">Every certificate of authenticity has a SHA-256 hash of the original artwork image. Swap the image, the hash no longer matches — tamper detected automatically.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Privilege escalation</div>
+            <div class="kv-value">Roles (admin / artist / customer) are enforced on every single endpoint server-side. Even if a clever user crafts a malicious request, they cannot become an admin.</div>
+          </div>
+          <div class="kv-row">
+            <div class="kv-key">Untraceable changes</div>
+            <div class="kv-value">Every sensitive admin action is recorded with actor, target, IP, user-agent, timestamp. Full forensic trail.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <h2 class="section-h2">Operations & monitoring</h2>
+        <p>The backend ships with everything needed to operate it in production from day one.</p>
+
+        <div class="card-grid">
+          <div class="card">
+            <h3 style="font-size:16px">Health checks</h3>
+            <p>Three endpoints monitoring tools call automatically: liveness ("is it alive"), readiness ("can it serve traffic"), and metrics ("how is it performing").</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:16px">Structured logs</h3>
+            <p>Every request emits one log line with a request ID, route, status code and timing — paste the request ID into a log search to trace any single customer's actions.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:16px">Background workers</h3>
+            <p>Closing auctions, sending emails, retrying failed jobs — all handled by a separate worker process that doesn't slow down the website.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:16px">Zero-downtime deployments</h3>
+            <p>Configured to roll new versions out without interrupting live customers. Crucial for a platform with live auctions in progress.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:16px">Secret rotation</h3>
+            <p>Every signing key can be rotated with one environment-variable change and a restart — no code change required.</p>
+          </div>
+          <div class="card">
+            <h3 style="font-size:16px">Containerised deployment</h3>
+            <p>Ships as Docker images so it runs identically on your laptop, on staging, and on production. No "works on my machine" surprises.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+  <section class="section-tight">
+    <div class="container" style="text-align:center; padding:48px 22px; border-top: 1px solid var(--border); margin-top: 60px;">
+      <p class="muted" style="font-size: 13px;">SevenArts · Backend Progress Report · prepared 16 May 2026</p>
+      <p class="muted" style="font-size: 12px; margin-top: 8px;">All screenshots captured live from the running backend. Data shown is real and currently in the database.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>
